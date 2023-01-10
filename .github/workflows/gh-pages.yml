@@ -67,7 +67,7 @@ jobs:
               id: envJson
               with:
                   file-name: 'release/wwwroot/env.json'
-                  buildNumber: ${{ env.GITHUB_RUN_ID }}
+                  RUN_ID: ${{ github.run_id }}
               
             - name: Commit and deploy to pages
               uses: JamesIves/github-pages-deploy-action@v4
