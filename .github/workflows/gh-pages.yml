@@ -62,6 +62,12 @@ jobs:
 
             - name: Add .nojekyll file
               run: touch release/wwwroot/.nojekyll
+          
+            - uses: schdck/create-env-json@v1
+              id: envJson
+              with:
+                  file-name: 'env.json'
+                  buildNumber: ${{ env.GITHUB_RUN_ID }}
               
             - name: Commit and deploy to pages
               uses: JamesIves/github-pages-deploy-action@v4
