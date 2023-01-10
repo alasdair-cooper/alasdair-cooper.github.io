@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "AlasdairCooper.Portfolio.dll": "sha256-C8zjiNCquDRE0epXbipUbQPmvpat86hu3Sivpe\/KdlY=",
+      "AlasdairCooper.Portfolio.dll": "sha256-rIo4nMqqNRAN1wx8REfd4IQ5mUBtffNMvJEOa1BtYqM=",
       "FluentValidation.dll": "sha256-AWdFkmoHUFhLmUvvrvy+I5C1URXsXIhN4NdHfhU6ydY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-AyrwmIxag2YPZOEx6uzD3wjzVFkUpkVjJBfTIPQH8KE=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-CqjgLzzZwv7F4s+S4K1bhK5MxHLAwzuuHeDyIpP2bQg=",
