@@ -8,7 +8,7 @@ permissions:
     contents: write
   
 jobs:
-    deploy-to-github-pages:
+    build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -17,21 +17,53 @@ jobs:
               uses: actions/setup-dotnet@v3
               with:
                   dotnet-version: 7.x
-                  include-prerelease: true
 
             - name: Publish
               run: dotnet publish AlasdairCooper.Portfolio/AlasdairCooper.Portfolio.csproj -c Release -o release --nologo
               
-            - name: Test
-              run: dotnet test --no-build --verbosity normal
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: Application_Artifact
+                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
+    test:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            
+            - name: Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: Application_Artifact
+                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
 
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: 7.x
+                  
+            - name: Test
+              run: dotnet test AlasdairCooper.Portfolio.Tests/AlasdairCooper.Portfolio.Tests.csproj
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            
+            - name: Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: Application_Artifact
+                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
+                  
             - name: Copy index.html to 404.html
               run: cp release/wwwroot/index.html release/wwwroot/404.html
 
             - name: Add .nojekyll file
               run: touch release/wwwroot/.nojekyll
-
-            - name: Commit to branch
+              
+            - name: Commit and deploy to pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
