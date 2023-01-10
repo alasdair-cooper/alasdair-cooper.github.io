@@ -1,6 +1,10 @@
 // Caution! Be sure you understand the caveats before publishing an application with
 // offline support. See https://aka.ms/blazor-offline-considerations
 
+let CACHE_VERSION;
+
+fetch("./env.json").then(res => res.json()).then(data => CACHE_VERSION = data.RUN_ID);
+
 self.importScripts('./service-worker-assets.js');
 self.addEventListener('install', event => event.waitUntil(onInstall(event)));
 self.addEventListener('activate', event => event.waitUntil(onActivate(event)));
