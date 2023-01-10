@@ -1,0 +1,39 @@
+name: blazor-wasm-build-deployment
+
+on:
+    push:
+        branches: [master]
+
+permissions:
+    contents: write
+  
+jobs:
+    deploy-to-github-pages:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: 7.x
+                  include-prerelease: true
+
+            - name: Publish
+              run: dotnet publish AlasdairCooper.Portfolio/AlasdairCooper.Portfolio.csproj -c Release -o release --nologo
+              
+            - name: Test
+              run: dotnet test --no-build --verbosity normal
+
+            - name: Copy index.html to 404.html
+              run: cp release/wwwroot/index.html release/wwwroot/404.html
+
+            - name: Add .nojekyll file
+              run: touch release/wwwroot/.nojekyll
+
+            - name: Commit to branch
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: build
+                  folder: release/wwwroot
