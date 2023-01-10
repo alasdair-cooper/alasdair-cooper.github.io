@@ -46,4 +46,5 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: fv9Oq+WQ */
+
+const CACHE_VERSION = await(await fetch("./env.json")).json();/* Manifest version: fv9Oq+WQ */
