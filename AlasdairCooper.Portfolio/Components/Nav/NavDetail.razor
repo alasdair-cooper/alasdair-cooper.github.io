@@ -1,0 +1,15 @@
+﻿<div class="nav-detail justify-space-between d-flex">
+	<MudText>
+		@Page.Name
+	</MudText>
+	<MudCheckBox 
+		T="bool"
+		Class="@classSet.ToString()"
+		Checked="IsFavourite"
+		CheckedChanged="OnCheckedChanged"
+		StopClickPropagation="true"
+		Size="Size.Small" 
+		Color="Color.Warning" 
+		CheckedIcon="@Icons.Material.Filled.Star" 
+		UncheckedIcon="@Icons.Material.Filled.StarOutline" />
+</div>

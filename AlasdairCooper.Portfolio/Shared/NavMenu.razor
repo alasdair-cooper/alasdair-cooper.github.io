@@ -1,39 +1,80 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">AlasdairCooper.Portfolio</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿@using System.Threading.Tasks
+@using AlasdairCooper.Portfolio.Components.Nav
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
+@inject NavigationManager _navMan
+
+<style type="text/css">
+	.mud-icon-button{
+		padding: 1px;
+	}
+</style>
+
+<MudNavMenu Margin="Margin.Dense" Color="Color.Primary" Class="pa-2 mb-3" Rounded Dense>
+	@if (pages != null)
+	{
+		if (favourites != null && favourites.Count > 0)
+		{
+			foreach (var pageIndex in favourites)
+			{
+				var navPage = pages[pageIndex];
+
+				<MudNavLink OnClick="() => LoadPage(navPage)" Match="NavLinkMatch.All" Icon="@navPage.Icon">
+					<NavDetail Page="navPage" IsFavourite="true" OnFavouriteToggled="@((isFavourite) => ToggleFavourite(navPage.Id, isFavourite))" />
+				</MudNavLink>
+			}
+			<MudDivider DividerType="DividerType.Middle" Class="my-2"/>
+		}
+		foreach (var navPage in pages.Where(page => !page.ParentPageId.HasValue))
+		{
+			<MudNavLink OnClick="() => LoadPage(navPage)" Match="NavLinkMatch.All" Icon="@navPage.Icon">
+				<NavDetail Page="navPage" OnFavouriteToggled="@((isFavourite) => ToggleFavourite(navPage.Id, isFavourite))" />
+			</MudNavLink>
+		}
+	}
+</MudNavMenu>
 
 @code {
-    private bool collapseNavMenu = true;
+	bool Favourited { get; set; } = false;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+	NavPage[] pages = new NavPage[] { };
+	public HashSet<int> favourites = new();
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+	protected override void OnInitialized()
+	{
+		pages = FetchPages();
+		favourites = GetFavourites();
+	}
+
+	public void LoadPage(NavPage page)
+	{
+		_navService.SetCurrentPage(page);
+		_navMan.NavigateTo(page.Url);
+	}
+
+	public NavPage[] FetchPages()
+	{
+		return new[]
+		{
+			new NavPage(_navService, "Home", 0, "/", Icons.Material.Filled.Home),
+			new NavPage(_navService, "Counter", 1, "/counter", Icons.Material.Filled.Home),
+			new NavPage(_navService, "Fetch data", 2, "/fetchdata", Icons.Material.Filled.Home)
+		};
+	}
+
+	public HashSet<int> GetFavourites()
+	{
+		return new HashSet<int> { 0 };
+	}
+
+	private void ToggleFavourite(int pageId, bool isFavourite)
+	{
+		if (isFavourite)
+		{
+			favourites.Add(pageId);
+		}
+		else
+		{
+			favourites.Remove(pageId);
+		}
+	}
 }

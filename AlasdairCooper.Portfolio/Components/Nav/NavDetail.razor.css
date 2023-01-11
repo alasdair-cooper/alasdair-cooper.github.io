@@ -1,0 +1,12 @@
+﻿.nav-detail {
+	margin-top: 2px;
+}
+
+	.nav-detail ::deep .visible-on-hover {
+		opacity: 0;
+		transition: 0.25s;
+	}
+
+	.nav-detail:hover ::deep .visible-on-hover {
+		opacity: 100
+	}
