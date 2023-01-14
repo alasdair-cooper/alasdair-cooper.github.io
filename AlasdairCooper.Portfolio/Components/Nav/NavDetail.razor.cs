@@ -13,20 +13,25 @@ public partial class NavDetail
 	[Parameter]
 	public EventCallback<bool> OnFavouriteToggled { get; set; }
 
-	private ClassSet classSet { get; set; } = new();
+	private ClassSet classSet = new();
 
-	private bool IsIconVisible() => IsFavourite || Page.IsCurrentPage();
+	private bool IsIconVisible => IsFavourite || Page == _navService.CurrentPage;
 
 	protected override void OnParametersSet()
 	{
-		if (!IsIconVisible()) classSet = new() { "visible-on-hover" };
+		classSet = new() { "favourite-icon" };
+
+        if (!IsIconVisible)
+        {
+            classSet.Add("visible-on-hover");
+        }
 	}
 
 	private async Task OnCheckedChanged(bool isChecked)
 	{
 		IsFavourite = isChecked;
 
-		classSet.Toggle("visible-on-hover", !IsIconVisible());
+		classSet.Toggle("visible-on-hover", !IsIconVisible);
 
 		await OnFavouriteToggled.InvokeAsync(IsFavourite);
 	}

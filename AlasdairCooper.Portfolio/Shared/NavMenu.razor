@@ -3,12 +3,6 @@
 
 @inject NavigationManager _navMan
 
-<style type="text/css">
-	.mud-icon-button{
-		padding: 1px;
-	}
-</style>
-
 <MudNavMenu Margin="Margin.Dense" Color="Color.Primary" Class="pa-2 mb-3" Rounded Dense>
 	@if (pages != null)
 	{
@@ -24,10 +18,10 @@
 			}
 			<MudDivider DividerType="DividerType.Middle" Class="my-2"/>
 		}
-		foreach (var navPage in pages.Where(page => !page.ParentPageId.HasValue))
+		foreach (var navPage in pages)
 		{
 			<MudNavLink OnClick="() => LoadPage(navPage)" Match="NavLinkMatch.All" Icon="@navPage.Icon">
-				<NavDetail Page="navPage" OnFavouriteToggled="@((isFavourite) => ToggleFavourite(navPage.Id, isFavourite))" />
+				<NavDetail Page="navPage" IsFavourite="favourites!.Contains(navPage.Id)" OnFavouriteToggled="@((isFavourite) => ToggleFavourite(navPage.Id, isFavourite))" />
 			</MudNavLink>
 		}
 	}
@@ -55,10 +49,10 @@
 	{
 		return new[]
 		{
-			new NavPage(_navService, "Home", 0, "/", Icons.Material.Filled.Home),
-			new NavPage(_navService, "Counter", 1, "/counter", Icons.Material.Filled.Home),
-			new NavPage(_navService, "Fetch data", 2, "/fetchdata", Icons.Material.Filled.Home)
-		};
+			_navService.CurrentPage,
+			new NavPage("Counter", 1, "/counter", Icons.Material.Filled.Calculate),
+			new NavPage("Fetch data", 2, "/fetchdata", Icons.Material.Filled.BarChart)
+	};
 	}
 
 	public HashSet<int> GetFavourites()

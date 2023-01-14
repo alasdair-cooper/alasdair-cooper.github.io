@@ -9,7 +9,7 @@ public class NavService
 
 	public void SetCurrentPage(NavPage nextPage)
 	{
-		if (CurrentPage == null || nextPage.Id != CurrentPage.Id)
+		if (CurrentPage == null || nextPage != CurrentPage)
 		{
 			CurrentPage = nextPage;
 			NotifyStateChanged();

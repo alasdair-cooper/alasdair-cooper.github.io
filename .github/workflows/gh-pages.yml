@@ -62,12 +62,13 @@ jobs:
 
             - name: Add .nojekyll file
               run: touch release/wwwroot/.nojekyll
-          
-            - uses: schdck/create-env-json@v1
-              id: envJson
+
+            - name: Write cache version to file
+              uses: DamianReeves/write-file-action@master
               with:
-                  file-name: 'release/wwwroot/env.json'
-                  RUN_ID: ${{ github.run_id }}
+                write-mode: append
+                path: release/wwwroot/service-worker.js
+                contents: const CACHE_VERSION = ${{ github.run_id }};
               
             - name: Commit and deploy to pages
               uses: JamesIves/github-pages-deploy-action@v4

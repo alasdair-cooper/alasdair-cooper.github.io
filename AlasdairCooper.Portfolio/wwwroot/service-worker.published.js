@@ -1,10 +1,6 @@
 // Caution! Be sure you understand the caveats before publishing an application with
 // offline support. See https://aka.ms/blazor-offline-considerations
 
-let CACHE_VERSION;
-
-fetch("./env.json").then(res => res.json()).then(data => CACHE_VERSION = data.RUN_ID);
-
 self.importScripts('./service-worker-assets.js');
 self.addEventListener('install', event => event.waitUntil(onInstall(event)));
 self.addEventListener('activate', event => event.waitUntil(onActivate(event)));
@@ -24,6 +20,7 @@ async function onInstall(event) {
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
         .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
+    self.skipWaiting();
 }
 
 async function onActivate(event) {
@@ -34,6 +31,8 @@ async function onActivate(event) {
     await Promise.all(cacheKeys
         .filter(key => key.startsWith(cacheNamePrefix) && key !== cacheName)
         .map(key => caches.delete(key)));
+    // May potentially cause cache to always be refreshed
+    self.skipWaiting()
 }
 
 async function onFetch(event) {

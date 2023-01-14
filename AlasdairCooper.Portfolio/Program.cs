@@ -6,7 +6,7 @@ using MudBlazor;
 using MudBlazor.Services;
 
 NavService _navService = new();
-_navService.SetCurrentPage(new NavPage(_navService, "index", 0, "/", Icons.Material.Filled.Home));
+_navService.SetCurrentPage(new NavPage("index", 0, "/", Icons.Material.Filled.Home));
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

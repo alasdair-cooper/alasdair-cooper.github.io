@@ -10,3 +10,7 @@
 	.nav-detail:hover ::deep .visible-on-hover {
 		opacity: 100
 	}
+
+	.nav-detail ::deep .favourite-icon .mud-icon-button {
+		padding: 1px;
+	}

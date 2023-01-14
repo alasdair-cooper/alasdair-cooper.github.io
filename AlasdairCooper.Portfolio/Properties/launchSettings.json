@@ -19,7 +19,7 @@
       }
     },
     "https": {
-      "commandName": "Project",
+			"commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
