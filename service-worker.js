@@ -20,6 +20,7 @@ async function onInstall(event) {
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
         .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
+    self.skipWaiting();
 }
 
 async function onActivate(event) {
@@ -30,6 +31,8 @@ async function onActivate(event) {
     await Promise.all(cacheKeys
         .filter(key => key.startsWith(cacheNamePrefix) && key !== cacheName)
         .map(key => caches.delete(key)));
+    // May potentially cause cache to always be refreshed
+    self.skipWaiting()
 }
 
 async function onFetch(event) {
@@ -46,4 +49,4 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }/* Manifest version: B10faLqL */
-const CACHE_VERSION = 3920735627;
+const CACHE_VERSION = 3920794455;
