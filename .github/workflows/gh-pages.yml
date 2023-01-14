@@ -13,6 +13,19 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
+            - name: Write cache version to file
+              uses: DamianReeves/write-file-action@master
+              with:
+                write-mode: append
+                path: AlasdairCooper.Portfolio/wwwroot/service-worker.published.js
+                contents: const CACHE_VERSION = ${{ github.run_id }};
+
+            - name: Copy index.html to 404.html
+              run: cp AlasdairCooper.Portfolio/wwwroot/index.html AlasdairCooper.Portfolio/wwwroot/404.html
+
+            - name: Add .nojekyll file
+              run: touch AlasdairCooper.Portfolio/wwwroot/.nojekyll
+
             - name: Setup .NET
               uses: actions/setup-dotnet@v3
               with:
@@ -56,19 +69,6 @@ jobs:
               with:
                   name: Application_Artifact
                   path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
-                  
-            - name: Copy index.html to 404.html
-              run: cp release/wwwroot/index.html release/wwwroot/404.html
-
-            - name: Add .nojekyll file
-              run: touch release/wwwroot/.nojekyll
-
-            - name: Write cache version to file
-              uses: DamianReeves/write-file-action@master
-              with:
-                write-mode: append
-                path: release/wwwroot/service-worker.js
-                contents: const CACHE_VERSION = ${{ github.run_id }};
               
             - name: Commit and deploy to pages
               uses: JamesIves/github-pages-deploy-action@v4
