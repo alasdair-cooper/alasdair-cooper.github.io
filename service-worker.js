@@ -46,3 +46,4 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }/* Manifest version: B10faLqL */
+const CACHE_VERSION = 3920735627;
