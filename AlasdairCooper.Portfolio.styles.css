@@ -11,6 +11,10 @@
 	.nav-detail:hover[b-6ro6pm7fsi]  .visible-on-hover {
 		opacity: 100
 	}
+
+	.nav-detail[b-6ro6pm7fsi]  .favourite-icon .mud-icon-button {
+		padding: 1px;
+	}
 /* /Shared/MainLayout.razor.rz.scp.css */
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-8nxa34va79] {
