@@ -9,6 +9,7 @@ permissions:
   
 jobs:
     build:
+        name: build 🔧
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -41,6 +42,7 @@ jobs:
                   path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
     test:
         needs: build
+        name: test 🧪
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -60,6 +62,7 @@ jobs:
               run: dotnet test AlasdairCooper.Portfolio.Tests/AlasdairCooper.Portfolio.Tests.csproj
     deploy:
         needs: test
+        name: deploy 🚀
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
