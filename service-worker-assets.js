@@ -113,11 +113,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-9oftsexni\/6btSgX5EZTP\/3QMZU+5k0nVviWDzbEr5I=",
+      "hash": "sha256-vhmCjPeXxe0ZALmzmBDZlCjtI8A\/0XN6GMHNG3fd0jk=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-sRpubgbe3kRjNdkRInOhoew0d8oKFne7e7NvDLzK5LA=",
+      "hash": "sha256-qVzLPdoxp6R7kcXs6oQSJo0pFEApTmELU9kCA4h2w9o=",
       "url": "_framework\/AlasdairCooper.Portfolio.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/Microsoft.AspNetCore.Components.Forms.dll"
     },
     {
-      "hash": "sha256-nFiJPQMwubQHrSvxUPMf+2pqVxypAShKGYK\/qk9lklI=",
+      "hash": "sha256-+sGjH2zQZGNc6PdXY0OZVnQi+HwJosb6IWSgNn18vLA=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.dll"
     },
     {
@@ -301,5 +301,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "C0HZLOEr"
+  "version": "Dm4zdDci"
 };

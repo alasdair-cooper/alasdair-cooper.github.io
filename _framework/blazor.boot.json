@@ -7,14 +7,14 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "AlasdairCooper.Portfolio.dll": "sha256-sRpubgbe3kRjNdkRInOhoew0d8oKFne7e7NvDLzK5LA=",
+      "AlasdairCooper.Portfolio.dll": "sha256-qVzLPdoxp6R7kcXs6oQSJo0pFEApTmELU9kCA4h2w9o=",
       "AlasdairCooper.Utils.dll": "sha256-EJ77xoo+PsACPVwAzqOOD2dXpKM3K2Sx43fHZaN06TI=",
       "Blazor.Canvas.dll": "sha256-PTtiRgT3WqRot4WS17gp+7h0tVhx6NMcjqi5Oh+MRfg=",
       "Excubo.Generators.Blazor.Attributes.dll": "sha256-kqRmJpCRWKYa5+G0rA7KRblsaInTiel2r1zE5XvSW6o=",
       "FluentValidation.dll": "sha256-AWdFkmoHUFhLmUvvrvy+I5C1URXsXIhN4NdHfhU6ydY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-B2YFCxgJaJLHrIL6s5hFjKK6rd9dA7V2Kngl0dQDrWA=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-He8VnbchEto2jQ4dC1nfd3Ab0UJ8vhL9PNvy7ULX4Kc=",
-      "Microsoft.AspNetCore.Components.Web.dll": "sha256-nFiJPQMwubQHrSvxUPMf+2pqVxypAShKGYK\/qk9lklI=",
+      "Microsoft.AspNetCore.Components.Web.dll": "sha256-+sGjH2zQZGNc6PdXY0OZVnQi+HwJosb6IWSgNn18vLA=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-2Jg3mQhCSyqkofbgXHMRw0whL7fAl07+VKYd0lApk7I=",
       "Microsoft.Extensions.Configuration.Abstractions.dll": "sha256-X\/f4fDl2cuIRXeWHhK\/f2UqQbFioD+RU4a4CEh0zrrQ=",
       "Microsoft.Extensions.Configuration.dll": "sha256-DBOKSPriP2JDxVbbWrLXyD3K4\/x3RBifNBWk\/q1I39M=",
