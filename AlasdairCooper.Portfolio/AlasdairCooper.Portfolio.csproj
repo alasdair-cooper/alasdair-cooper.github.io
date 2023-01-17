@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\AlasdairCooper.Utils\AlasdairCooper.Utils.csproj" />
+	  <ProjectReference Include="..\..\AlasdairCooper.Utils\AlasdairCooper.Utils\AlasdairCooper.Utils.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
