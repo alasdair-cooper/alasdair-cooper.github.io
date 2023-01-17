@@ -7,8 +7,8 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "AlasdairCooper.Portfolio.dll": "sha256-qVzLPdoxp6R7kcXs6oQSJo0pFEApTmELU9kCA4h2w9o=",
-      "AlasdairCooper.Utils.dll": "sha256-EJ77xoo+PsACPVwAzqOOD2dXpKM3K2Sx43fHZaN06TI=",
+      "AlasdairCooper.Portfolio.dll": "sha256-\/cKh2xPlo5VMVmlL2lV4Sx+gDTR0bOH78VxtZo26bXM=",
+      "AlasdairCooper.Portfolio.Utils.dll": "sha256-Xd4ArNG1FWjYDdK3wvvhYZX15b+ut+Hqxk32x+kudDs=",
       "Blazor.Canvas.dll": "sha256-PTtiRgT3WqRot4WS17gp+7h0tVhx6NMcjqi5Oh+MRfg=",
       "Excubo.Generators.Blazor.Attributes.dll": "sha256-kqRmJpCRWKYa5+G0rA7KRblsaInTiel2r1zE5XvSW6o=",
       "FluentValidation.dll": "sha256-AWdFkmoHUFhLmUvvrvy+I5C1URXsXIhN4NdHfhU6ydY=",
