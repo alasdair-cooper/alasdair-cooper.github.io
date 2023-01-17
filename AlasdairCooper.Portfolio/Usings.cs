@@ -1,2 +1,2 @@
 ﻿global using AlasdairCooper.Portfolio.Models;
-global using AlasdairCooper.Utils;
+global using AlasdairCooper.Portfolio.Utils;

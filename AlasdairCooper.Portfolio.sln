@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlasdairCooper.Portfolio", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlasdairCooper.Portfolio.Tests", "AlasdairCooper.Portfolio.Tests\AlasdairCooper.Portfolio.Tests.csproj", "{861B5B18-491D-4172-A9F4-5194C083D561}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlasdairCooper.Utils", "..\AlasdairCooper.Utils\AlasdairCooper.Utils\AlasdairCooper.Utils.csproj", "{2C9E3CE4-9544-4E49-9DC1-0906738B25A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlasdairCooper.Portfolio.Utils", "AlasdairCooper.Portfolio.Utils\AlasdairCooper.Portfolio.Utils.csproj", "{598E9CE6-8114-4706-AC12-25E23A813C5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{861B5B18-491D-4172-A9F4-5194C083D561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861B5B18-491D-4172-A9F4-5194C083D561}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861B5B18-491D-4172-A9F4-5194C083D561}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C9E3CE4-9544-4E49-9DC1-0906738B25A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C9E3CE4-9544-4E49-9DC1-0906738B25A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C9E3CE4-9544-4E49-9DC1-0906738B25A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C9E3CE4-9544-4E49-9DC1-0906738B25A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598E9CE6-8114-4706-AC12-25E23A813C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598E9CE6-8114-4706-AC12-25E23A813C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598E9CE6-8114-4706-AC12-25E23A813C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598E9CE6-8114-4706-AC12-25E23A813C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
