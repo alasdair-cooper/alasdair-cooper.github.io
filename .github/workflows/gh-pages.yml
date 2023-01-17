@@ -12,78 +12,79 @@ jobs:
         name: build 🔧
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            -   uses: actions/checkout@v3
 
-            - name: Write cache version to file
-              uses: DamianReeves/write-file-action@master
-              with:
-                write-mode: append
-                path: AlasdairCooper.Portfolio/wwwroot/service-worker.published.js
-                contents: const CACHE_VERSION = ${{ github.run_id }};
+            -   name: Write cache version to file
+                uses: DamianReeves/write-file-action@master
+                with:
+                    write-mode: append
+                    path: AlasdairCooper.Portfolio/wwwroot/service-worker.published.js
+                    contents: const CACHE_VERSION = ${{ github.run_id }};
 
-            - name: Copy index.html to 404.html
-              run: cp AlasdairCooper.Portfolio/wwwroot/index.html AlasdairCooper.Portfolio/wwwroot/404.html
+            -   name: Copy index.html to 404.html
+                run: cp AlasdairCooper.Portfolio/wwwroot/index.html AlasdairCooper.Portfolio/wwwroot/404.html
 
-            - name: Add .nojekyll file
-              run: touch AlasdairCooper.Portfolio/wwwroot/.nojekyll
+            -   name: Add .nojekyll file
+                run: touch AlasdairCooper.Portfolio/wwwroot/.nojekyll
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v3
-              with:
-                  dotnet-version: 7.x
+            -   name: Setup .NET
+                uses: actions/setup-dotnet@v3
+                with:
+                    dotnet-version: 7.x
 
-            - name: Publish
-              run: dotnet publish AlasdairCooper.Portfolio/AlasdairCooper.Portfolio.csproj -c Release -o release --nologo
+            -   name: Publish
+                run: dotnet publish AlasdairCooper.Portfolio/AlasdairCooper.Portfolio.csproj -c Release -o release --nologo
               
-            - name: Upload Artifact
-              uses: actions/upload-artifact@v3
-              with:
-                  name: Application_Artifact
-                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
+            -   name: Upload Artifact
+                uses: actions/upload-artifact@v3
+                with:
+                    name: Application_Artifact
+                    path: ${{ github.workspace }}/release/
     test:
+        permissions: write-all
         needs: build
         name: test 🧪
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            -   uses: actions/checkout@v3
             
-            - name: Download artifact
-              uses: actions/download-artifact@v3
-              with:
-                  name: Application_Artifact
-                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
+            -   name: Download artifact
+                uses: actions/download-artifact@v3
+                with:
+                    name: Application_Artifact
+                    path: ${{ github.workspace }}/release/
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v3
-              with:
-                  dotnet-version: 7.x
+            -   name: Setup .NET
+                uses: actions/setup-dotnet@v3
+                with:
+                    dotnet-version: 7.x
                   
-            - name: Test
-              run: dotnet test AlasdairCooper.Portfolio.Tests/AlasdairCooper.Portfolio.Tests.csproj --logger "trx;LogFileName=test-results.trx"
+            -   name: Test
+                run: dotnet test AlasdairCooper.Portfolio.Tests/AlasdairCooper.Portfolio.Tests.csproj --logger "trx;LogFileName=test-results.trx"
 
-            - name: Test Report
-              uses: dorny/test-reporter@v1
-              if: success() || failure()    # run this step even if previous step failed
-              with:
-                name: JEST Tests            # Name of the check run which will be created
-                path: /*/test-results.trx   # Path to test results
-                reporter: dotnet-trx        # Format of test results
+            -   name: Test Report
+                uses: dorny/test-reporter@v1
+                if: success() || failure()               
+                with:
+                    name: results 📋                    
+                    path: ${{ github.workspace }}/AlasdairCooper.Portfolio.Tests/TestResults/test-results.trx  
+                    reporter: dotnet-trx                  
     deploy:
         needs: test
         name: deploy 🚀
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            -   uses: actions/checkout@v3
             
-            - name: Download artifact
-              uses: actions/download-artifact@v3
-              with:
-                  name: Application_Artifact
-                  path: /home/runner/work/alasdair-cooper.github.io/alasdair-cooper.github.io/release/
+            -   name: Download artifact
+                uses: actions/download-artifact@v3
+                with:
+                    name: Application_Artifact
+                    path: ${{ github.workspace }}/release/
               
-            - name: Commit and deploy to pages
-              uses: JamesIves/github-pages-deploy-action@v4
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: build
-                  folder: release/wwwroot
+            -   name: Commit and deploy to pages
+                uses: JamesIves/github-pages-deploy-action@v4
+                with:
+                    token: ${{ secrets.GITHUB_TOKEN }}
+                    branch: build
+                    folder: release/wwwroot
